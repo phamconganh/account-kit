@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sign in</title>
+</head>
+<body>
+	<div>
+		<h1>Sign in</h1>
+		<form id="sign_in_form" name="sign_in_form" action="/sign_in" method="POST">
+			<input placeholder="phone number or email" id="user_name" name="user_name"/>
+			<input placeholder="password" id="password" name="password"/>
+			<button onclick="login();">Login</button>
+		</form>
+		<form id="forgot_form" name="forgot_form" action="/forgot_password" method="GET">
+			<button onclick="forgotPassword()">Forgot password</button>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		function login() {
+			if(user_name && password)
+				document.getElementById("sign_in_form").submit();
+		}
+		function forgotPassword(){
+			document.getElementById("forgot_form").submit();
+		}
+	</script>
+	
+</body>
+</html>
+
+
+<!-- {
+	id:"371977379945886",
+	user_name: {
+		"phone": {
+			"number": "+841632059268",
+			"country_prefix": "84",
+			"national_number": "1632059268"
+		}
+	},
+	password:"123456789"
+	information:,
+	token:{
+		access_token:,
+		expires_at:,
+	}
+}
+
+
+{
+	id:"2057380047863382",
+	user_name: {
+		email: "conganhphamnd@gmail.com"
+	},
+	password:"123456789"
+	information:,
+	token:{
+		access_token:,
+		expires_at:,
+	}
+} -->
