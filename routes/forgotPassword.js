@@ -62,7 +62,7 @@ router.route('/')
 						}
 						//
 					, (function(err, doc) {
-						if (err||!doc){
+						if (err || !doc){
 							response.send("<h1>Account is not exit :( !</h1>");
 						}else{
 							collection.updateOne(
