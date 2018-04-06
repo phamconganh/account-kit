@@ -10,23 +10,15 @@
 		<form id="sign_in_form" name="sign_in_form" action="/sign_in" method="POST">
 			<input placeholder="phone number or email" id="user_name" name="user_name"/>
 			<input placeholder="password" id="password" name="password"/>
-			<button onclick="login();">Login</button>
+			<button>Login</button>
 		</form>
-		<form id="forgot_form" name="forgot_form" action="/forgot_password" method="GET">
-			<button onclick="forgotPassword()">Forgot password</button>
+		<form action="/forgot_password" method="GET">
+			<button>Forgot password</button>
+		</form>
+		<form action="/sign_up" method="GET">
+			<button>Sign Up</button>
 		</form>
 	</div>
-
-	<script type="text/javascript">
-		function login() {
-			if(user_name && password)
-				document.getElementById("sign_in_form").submit();
-		}
-		function forgotPassword(){
-			document.getElementById("forgot_form").submit();
-		}
-	</script>
-	
 </body>
 </html>
 

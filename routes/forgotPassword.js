@@ -6,16 +6,17 @@ const Request  = require('request');
 const Querystring  = require('querystring');
 const loadFile = require('../models/loadFileHtml.js');
 const db = require('../models/db.js');
+const config = require('../config.json');
 
 const bodyParser = require('body-parser');
 const parseUrlencoded = bodyParser.urlencoded({ extended: false });
 
 var csrf_guid = Guid.raw();
-const account_kit_api_version = 'v1.0';
-const app_id = process.env.FACEBOOK_APP_ID ||'1719278994833521';
-const app_secret = process.env.FACEBOOK_ACCOUNT_KIT_SECRET ||'6d0fc20a1cc92d4de0d8cefee937b827';
-var me_endpoint_base_url = 'https://graph.accountkit.com/v1.0/me';
-var token_exchange_base_url = 'https://graph.accountkit.com/v1.0/access_token'; 
+const account_kit_api_version = config.account_kit_api_version
+const app_id = config.app_id;
+const app_secret = config.app_secret;
+var me_endpoint_base_url = config.me_endpoint_base_url;
+var token_exchange_base_url = config.token_exchange_base_url;
 
 const collectionName = 'users';
 

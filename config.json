@@ -1,0 +1,8 @@
+{
+	"urlDB": "mongodb://localhost:27017/accountKit",
+	"account_kit_api_version": "v1.0",
+	"app_id": "1719278994833521",
+	"app_secret": "6d0fc20a1cc92d4de0d8cefee937b827",
+	"me_endpoint_base_url": "https://graph.accountkit.com/v1.0/me",
+	"token_exchange_base_url": "https://graph.accountkit.com/v1.0/access_token"
+}

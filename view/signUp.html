@@ -3,8 +3,78 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Sign up</title>
+	<script src="https://sdk.accountkit.com/en_US/sdk.js"></script>	
 </head>
 <body>
-	<h1>Sign</h1>
+	<h1>Sign Up</h1>
+	<div>
+		
+		<div>
+			<input value="+1" id="country_code" />
+			<input placeholder="phone number" id="phone_number"/></br>
+			<button onclick="signUpWithSMS();">Sign up via SMS</button>
+		<div>OR</div>
+			<input placeholder="email" id="email"/>
+			<button onclick="signUpWithEmail();">Sign up via Email</button>
+		</div>
+		<form id="form" name="form" action="/sign_up" method="POST">
+			<input type="hidden" id="code" name="code">
+			<input type="hidden" id="csrf" name="csrf">
+			<input placeholder="password" name="password">
+		</form>
+	</div>
+	<script>
+		// initialize Account Kit with CSRF protection
+	  	AccountKit_OnInteractive = function(){
+		  	console.log("{{csrf}}");
+		    AccountKit.init(
+		      	{
+					appId: "{{app_id}}", 
+			        state: "{{csrf}}", 
+			        version:"{{version}}",
+			        display: "modal",
+			        fbAppEventsEnabled: true
+		      	}
+		    );
+		};
+
+	  	function signUpCallback(response) {
+	  		console.log(response.status);
+	    	if (response.status === "PARTIALLY_AUTHENTICATED") {
+	      		document.getElementById("code").value = response.code;
+	     		document.getElementById("csrf").value = response.state;
+	      		document.getElementById("form").submit();
+	    	}
+	    	else if (response.status === "NOT_AUTHENTICATED") {
+		      	// handle authentication failure
+			   	console.log("NOT_AUTHENTICATED");
+		    }
+		    else if (response.status === "BAD_PARAMS") {
+		      	// handle bad parameters
+			  	console.log("BAD_PARAMS");
+		    }
+		}
+
+		function signUpWithSMS(){
+		  	var countryCode = document.getElementById("country_code").value;
+    		var phoneNumber = document.getElementById("phone_number").value;
+
+		    AccountKit.login(
+		      	'PHONE', 
+		      	{countryCode: countryCode, phoneNumber: phoneNumber},
+		      	// will use default values if not specified
+		      	signUpCallback
+		    );
+		}
+
+		function signUpWithEmail(){
+		  	var emailAddress = document.getElementById("email").value;
+    		AccountKit.login(
+      			'EMAIL',
+      			{emailAddress: emailAddress},
+      			signUpCallback
+    		);
+  		}
+	</script>
 </body>
 </html>
